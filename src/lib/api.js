@@ -9,8 +9,7 @@ if (!API_URL) {
 }
 
 const api = axios.create({
-  baseURL: API_URL, // ✅ NO fallback
-  timeout: 30000,
+  baseURL: import.meta.env.VITE_API_URL, // NO fallback
 });
 
 /* Attach JWT token */

@@ -13,7 +13,7 @@ function BookReader({ book, onClose }) {
   const [downloading, setDownloading] = useState(false);
   const [reloadKey, setReloadKey] = useState(0);
 
-  const apiBase = import.meta.env.VITE_API_URL || '/api';
+const apiBase = import.meta.env.VITE_API_URL;
   const streamUrl = `${apiBase}/books/${book._id}/stream`;
   const dlUrl = `${apiBase}/books/${book._id}/download-file`;
 
