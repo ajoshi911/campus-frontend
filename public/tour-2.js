@@ -1666,9 +1666,8 @@ function onLibSearch(val){LibState.search=val;LibState.page=1;clearTimeout(_sear
 
 function getApiBase() {
   return (
-    (typeof LIBRARY_API !== 'undefined' && LIBRARY_API) ||
+    window.VITE_API_URL ||
     localStorage.getItem('tcet_api_url') ||
-    import.meta.env.VITE_API_URL ||
     'https://campus-production-aa2f.up.railway.app/api'
   );
 }
