@@ -9,7 +9,7 @@ if (!API_URL) {
 }
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_API_URL, // NO fallback
+  baseURL: API_URL ? API_URL : 'https://campus-production-aa2f.up.railway.app/api',
 });
 
 /* Attach JWT token */
