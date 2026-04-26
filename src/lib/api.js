@@ -2,14 +2,15 @@ import axios from 'axios';
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-console.log("API URL:", API_URL); // ✅ debug
+console.log("API URL:", API_URL);
 
 if (!API_URL) {
   throw new Error("❌ VITE_API_URL is NOT set");
 }
 
 const api = axios.create({
-  baseURL: API_URL ? API_URL : 'https://campus-production-aa2f.up.railway.app/api',
+  baseURL: API_URL,
+  timeout: 30000,
 });
 
 /* Attach JWT token */
