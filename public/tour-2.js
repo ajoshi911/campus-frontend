@@ -1,5 +1,5 @@
 'use strict';
-
+const API_URL = import.meta.env.VITE_API_URL;
 /* ══════════════════════════════════════════════════════════
    CANVAS TEXTURE GENERATORS
 ══════════════════════════════════════════════════════════ */
@@ -1664,7 +1664,14 @@ function toggleLibraryOverlay(){const o=document.getElementById('library-overlay
 let _searchDebounce=null;
 function onLibSearch(val){LibState.search=val;LibState.page=1;clearTimeout(_searchDebounce);_searchDebounce=setTimeout(fetchBooks,400);}
 
-function getApiBase(){return(typeof LIBRARY_API!=='undefined'?LIBRARY_API:null)||localStorage.getItem('tcet_api_url')||'/api';}
+function getApiBase() {
+  return (
+    (typeof LIBRARY_API !== 'undefined' && LIBRARY_API) ||
+    localStorage.getItem('tcet_api_url') ||
+    import.meta.env.VITE_API_URL ||
+    'https://campus-production-aa2f.up.railway.app/api'
+  );
+}
 function getToken(){return localStorage.getItem('tcet_token')||'';}
 async function apiFetch(path,opts={}){
   const h={'Content-Type':'application/json',...(opts.headers||{})};const tok=getToken();if(tok)h['Authorization']=`Bearer ${tok}`;
